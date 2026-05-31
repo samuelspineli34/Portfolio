@@ -18,8 +18,8 @@ const updateThemeIcon = (): void => {
     const iconElement = document.getElementById('theme-icon');
     if (!iconElement) return;
     const isDark = document.documentElement.classList.contains('dark');
-    iconElement.innerHTML = isDark ? 
-        `<svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>` : 
+    iconElement.innerHTML = isDark ?
+        `<svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>` :
         `<svg class="w-5 h-5 text-slate-600" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>`;
 };
 
@@ -31,7 +31,7 @@ const setLanguage = (lang: 'pt' | 'en'): void => {
     });
     document.getElementById('btn-pt')?.classList.toggle('active', lang === 'pt');
     document.getElementById('btn-en')?.classList.toggle('active', lang === 'en');
-    
+
     renderExperience(lang);
     renderProjects(lang);
     renderTechStack();
@@ -47,7 +47,7 @@ const renderExperience = (lang: 'pt' | 'en'): void => {
     const list = document.getElementById('experience-list');
     if (!list) return;
     const items = [
-        { corp: "Draft Solutions", role: "exp_draft_role", date: "Jun. 2025 - Pres", desc: "exp_draft_desc" },
+        { corp: "Draft Solutions", role: "exp_draft_role", date: "Jul. 2025 - Pres", desc: "exp_draft_desc" },
         { corp: "Telefonica (Vivo)", role: "exp_tele_role", date: "Jun. 2022 - Jan. 2023", desc: "exp_tele_desc" },
         { corp: "Sermicro", role: "exp_ser_role", date: "Jan. 2022 - Jun. 2022", desc: "exp_ser_desc" }
     ];
@@ -71,8 +71,11 @@ const renderProjects = (lang: 'pt' | 'en'): void => {
     const others = projectData.filter(p => !p.featured);
 
     const cardHtml = (p: Project, isLarge: boolean) => `
-        <div class="project-card bg-white dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col h-full">
-            <img src="/imagens/${p.img}" class="w-full ${isLarge ? 'h-64' : 'h-48'} object-cover" alt="${p.title}">
+        <div class="project-card bg-white dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col h-full group">
+            <div class="relative overflow-hidden ${isLarge ? 'h-64' : 'h-48'}">
+                <img src="/imagens/${p.img}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="${p.title}">
+                ${p.hasCiCd ? `<div class="absolute top-4 left-4 bg-blue-600 text-white text-[8px] font-black px-2 py-1 rounded shadow-lg">CI/CD PIPELINE ACTIVE</div>` : ''}
+            </div>
             <div class="p-8 flex flex-col flex-grow">
                 <div class="flex flex-wrap gap-2 mb-4">
                     ${p.tech.map(t => `<span class="tech-badge">${t}</span>`).join('')}
@@ -81,9 +84,18 @@ const renderProjects = (lang: 'pt' | 'en'): void => {
                 <p class="text-sm text-slate-500 dark:text-slate-400 mb-6 leading-relaxed flex-grow">
                     ${translations[lang][p.descKey]}
                 </p>
-                <div class="flex gap-6 mt-auto pt-4 border-t border-slate-100 dark:border-slate-700">
+                <div class="flex flex-wrap gap-y-2 gap-x-6 mt-auto pt-4 border-t border-slate-100 dark:border-slate-700">
                     <a href="${p.link}" target="_blank" class="text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-widest hover:underline">GitHub</a>
-                    ${p.liveLink ? `<a href="${p.liveLink}" target="_blank" class="text-emerald-600 dark:text-emerald-400 text-xs font-black uppercase tracking-widest hover:underline">Live Demo</a>` : ''}
+                    
+                    ${p.liveLink ? `
+                        <a href="${p.liveLink}" target="_blank" class="text-emerald-600 dark:text-emerald-400 text-xs font-black uppercase tracking-widest hover:underline">Live Demo</a>
+                    ` : ''}
+
+                    ${p.articleLink ? `
+                        <a href="${p.articleLink}" target="_blank" class="text-amber-600 dark:text-amber-400 text-xs font-black uppercase tracking-widest hover:underline">
+                            ${translations[lang]["read_article"]}
+                        </a>
+                    ` : ''}
                 </div>
             </div>
         </div>
@@ -94,6 +106,7 @@ const renderProjects = (lang: 'pt' | 'en'): void => {
             <h3 class="text-2xl font-black uppercase tracking-tighter mb-8 border-l-4 border-blue-600 pl-4 dark:text-white">
                 ${translations[lang]["section-projects"]}
             </h3>
+            <!-- Alterado para lg:grid-cols-3 -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 ${featured.map(p => cardHtml(p, true)).join('')}
             </div>
@@ -102,7 +115,7 @@ const renderProjects = (lang: 'pt' | 'en'): void => {
             <h3 class="text-xl font-black uppercase tracking-tighter mb-8 border-l-4 border-slate-400 pl-4 text-slate-500">
                 ${translations[lang]["section-other-projects"]}
             </h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 ${others.map(p => cardHtml(p, false)).join('')}
             </div>
         </div>
