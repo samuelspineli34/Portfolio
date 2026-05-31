@@ -119,6 +119,7 @@ export const projectData: Project[] = [
         featured: false,
         descKey: "desc-uvd"
     },
+    
     {
         title: "Fretly",
         img: "fretly.png",
