@@ -72,36 +72,38 @@ const renderProjects = (lang: 'pt' | 'en'): void => {
     const featured = projectData.filter(p => p.featured);
     const others = projectData.filter(p => !p.featured);
 
-        const cardHtml = (p: Project, isLarge: boolean) => `
-        <div class="project-card bg-white dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col h-full group">
-            <div class="relative overflow-hidden ${isLarge ? 'h-64' : 'h-48'}">
-                <!-- 2. Use o BASE_URL para o caminho das imagens -->
-                <img src="${BASE_URL}imagens/${p.img}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="${p.title}">
-                ${p.hasCiCd ? `<div class="absolute top-4 left-4 bg-blue-600 text-white text-[8px] font-black px-2 py-1 rounded shadow-lg">CI/CD PIPELINE ACTIVE</div>` : ''}
-            </div>
-            <div class="p-8 flex flex-col flex-grow">
-                <div class="flex flex-wrap gap-2 mb-4">
-                    ${p.tech.map(t => `<span class="tech-badge">${t}</span>`).join('')}
+    const cardHtml = (p: Project, isLarge: boolean) => {
+        // Busca a tradução correta usando o lang passado para a função pai
+        const articleLabel = translations[lang]["read_article"];
+        
+        return `
+            <div class="project-card bg-white dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col h-full group">
+                <div class="relative overflow-hidden ${isLarge ? 'h-64' : 'h-48'}">
+                    <img src="${BASE_URL}imagens/${p.img}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="${p.title}">
+                    ${p.hasCiCd ? `<div class="absolute top-4 left-4 bg-blue-600 text-white text-[8px] font-black px-2 py-1 rounded shadow-lg">CI/CD PIPELINE ACTIVE</div>` : ''}
                 </div>
-                <h4 class="${isLarge ? 'text-2xl' : 'text-lg'} font-black dark:text-white mb-3">${p.title}</h4>
-                <p class="text-sm text-slate-500 dark:text-slate-400 mb-6 leading-relaxed flex-grow">
-                    ${translations[lang][p.descKey]}
-                </p>
-                <div class="flex flex-wrap gap-y-2 gap-x-6 mt-auto pt-4 border-t border-slate-100 dark:border-slate-700">
-                    <a href="${p.link}" target="_blank" class="text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-widest hover:underline">GitHub</a>
-                    ${p.liveLink ? `<a href="${p.liveLink}" target="_blank" class="text-emerald-600 dark:text-emerald-400 text-xs font-black uppercase tracking-widest hover:underline">Live Demo</a>` : ''}
-                    ${p.articleLink ? `<a href="${p.articleLink}" target="_blank" class="text-amber-600 dark:text-amber-400 text-xs font-black uppercase tracking-widest hover:underline">${translations[lang]["read_article"]}</a>` : ''}
+                <div class="p-8 flex flex-col flex-grow">
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        ${p.tech.map(t => `<span class="tech-badge">${t}</span>`).join('')}
+                    </div>
+                    <h4 class="${isLarge ? 'text-2xl' : 'text-lg'} font-black dark:text-white mb-3">${p.title}</h4>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6 leading-relaxed flex-grow">
+                        ${translations[lang][p.descKey]}
+                    </p>
+                    <div class="flex flex-wrap gap-y-2 gap-x-6 mt-auto pt-4 border-t border-slate-100 dark:border-slate-700">
+                        <a href="${p.link}" target="_blank" class="text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-widest hover:underline">GitHub</a>
+                        ${p.liveLink ? `<a href="${p.liveLink}" target="_blank" class="text-emerald-600 dark:text-emerald-400 text-xs font-black uppercase tracking-widest hover:underline">Live Demo</a>` : ''}
+                        ${p.articleLink ? `<a href="${p.articleLink}" target="_blank" class="text-amber-600 dark:text-amber-400 text-xs font-black uppercase tracking-widest hover:underline">${articleLabel}</a>` : ''}
+                    </div>
                 </div>
             </div>
-        </div>
-    `;
+        `};
 
     grid.innerHTML = `
         <div class="col-span-full mb-12">
             <h3 class="text-2xl font-black uppercase tracking-tighter mb-8 border-l-4 border-blue-600 pl-4 dark:text-white">
                 ${translations[lang]["section-projects"]}
             </h3>
-            <!-- Alterado para lg:grid-cols-3 -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 ${featured.map(p => cardHtml(p, true)).join('')}
             </div>

@@ -21,6 +21,7 @@ export const translations: any = {
         "section-projects": "Engenharia de Software & TCC",
         "section-other-projects": "Ferramentas & Pesquisa Científica",
         "footer-contact": "Estabelecer Conexão",
+        "read_article": "Ler Artigo Científico",
 
         // Experiência Draft
         "exp_draft_role": "Desenvolvedor de Software",
@@ -46,8 +47,6 @@ export const translations: any = {
         "desc-block": "throughput de mineração em Blockchain. Otimização de processamento de hashes através de paralelismo de hardware em C++.",
         "desc-lista": "Implementação de RAG (Retrieval-Augmented Generation) para consulta semântica em documentos PDF utilizando modelos LLM da OpenAI.",
         "desc-geo": "Renderizador gráfico fundamentado em geometria analítica. Implementação de algoritmos Bresenham e DDA para transformações lineares 2D.",
-
-        "read_article": "Ler Artigo Científico",
     },
     en: {
         "nav-role": "SOFTWARE ENGINEER",
@@ -59,6 +58,7 @@ export const translations: any = {
         "section-projects": "Engineering Systems & Thesis",
         "section-other-projects": "Tools & Scientific Research",
         "footer-contact": "Connect",
+        "read_article": "Read Scientific Paper",
 
         "exp_draft_role": "Software Developer",
         "exp_draft_desc": "Internal engineering platform development using TypeScript (Vite + Bun). Strategic requirements gathering with users and technical architecture design. Responsible for Full Stack integration (Python Flask), PostgreSQL relational data modeling, and on-premise infrastructure deployment.",
@@ -80,8 +80,6 @@ export const translations: any = {
         "desc-block": "Blockchain mining throughput. Optimization of hash processing through hardware parallelism in C++.",
         "desc-lista": "RAG (Retrieval-Augmented Generation) implementation for semantic PDF analysis using OpenAI LLM models.",
         "desc-geo": "Graphical renderer based on analytical geometry. Low-level implementation of Bresenham and DDA algorithms for 2D linear transformations.",
-
-        "read_article": "Read Scientific Paper",
     }
 };
 
