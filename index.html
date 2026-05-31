@@ -1,239 +1,109 @@
 <!DOCTYPE html>
 <html lang="pt-br" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio - Samuel Spineli</title>
-    <!-- CSS Mínimo apenas para brilhos e animações -->
-    <link rel="stylesheet" href="./style.css">
-    <!-- Fontes do Google -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-    <!-- Script do Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Samuel Spineli | Software Developer</title>
+    <!-- O Vite vai processar o Tailwind através deste CSS -->
+    <link rel="stylesheet" href="/src/style.css">
+
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
 </head>
 
-<body class="bg-[#0d0221] text-[#00f7ff] font-['VT323',_monospace] bg-fixed bg-center bg-cover overflow-x-hidden" style="background-image: linear-gradient(rgba(13, 2, 33, 0.95), rgba(13, 2, 33, 0.95)), url('imagens/nichijou.png');">
-    
-    <!-- CABEÇALHO -->
-    <header class="sticky top-0 z-50 w-full py-4 bg-black/60 border-b-2 border-[#f0f] backdrop-blur-sm">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-            <h1 class="text-3xl text-glow-magenta animate-glitch"><a href="#">SAMUEL SPINELI</a></h1>
-            <nav>
-                <ul class="flex space-x-6 md:space-x-8 text-xl">
-                    <li><a href="#about" class="text-glow-link">::SOBRE</a></li>
-                    <li><a href="#projects" class="text-glow-link">::PROJETOS</a></li>
-                    <li><a href="#contact" class="text-glow-link">::CONTATO</a></li>
-                </ul>
-            </nav>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+
+    <header
+        class="fixed top-0 z-50 w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex flex-col">
+                <span class="font-black text-xl tracking-tighter">SAMUEL SPINELI</span>
+                <span class="text-[10px] font-bold text-blue-600 tracking-[0.2em]" data-i18n="nav-role"></span>
+            </div>
+            <div class="flex items-center gap-6">
+                <nav
+                    class="hidden lg:flex gap-8 text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">
+                    <a href="#about" data-i18n="nav-about"></a>
+                    <a href="#experience" data-i18n="nav-exp"></a>
+                    <a href="#projects" data-i18n="nav-projects"></a>
+                </nav>
+                <div class="flex items-center gap-6 border-l pl-6 border-slate-200 dark:border-slate-700">
+                    <button onclick="toggleTheme()" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800"><span
+                            id="theme-icon"></span></button>
+                    <div class="flex gap-2">
+                        <button onclick="setLanguage('pt')" id="btn-pt" class="flag-btn active"><img
+                                src="https://flagcdn.com/w40/br.png" width="22"></button>
+                        <button onclick="setLanguage('en')" id="btn-en" class="flag-btn"><img
+                                src="https://flagcdn.com/w40/gb.png" width="22"></button>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- SEÇÃO HERO -->
-    <section id="hero" class="min-h-[40vh] flex flex-col items-center justify-center text-center px-4 border-b-2 pt-2 border-[#f0f]">
-        <h1 class="text-7xl text-glow-magenta z-10">PORTFÓLIO</h1>
-        <p class="text-3xl text-glow">"Desenvolvedor"</p>
+    <section id="about" class="pt-40 pb-20 bg-white dark:bg-slate-900 transition-colors">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            <div class="lg:col-span-4 flex justify-center">
+                <!-- Ajustado caminho da imagem -->
+                <img src="/imagens/eu.jpg"
+                    class="w-72 h-80 object-cover rounded-2xl shadow-2xl border-4 border-slate-50 dark:border-slate-800">
+            </div>
+            <div class="lg:col-span-8">
+                <h1 class="text-6xl font-black mb-4">Samuel Spineli</h1>
+                <p class="text-2xl text-blue-600 font-bold mb-8 uppercase tracking-wide" data-i18n="nav-role"></p>
+                <div class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-10" data-i18n="hero-summary">
+                </div>
+                <div id="tech-stack" class="flex flex-wrap gap-2"></div>
+            </div>
+        </div>
     </section>
 
-    <!-- CONTEÚDO PRINCIPAL -->
-    <main class="max-w-6xl mx-auto bg-black/70 border-x-2 border-[#00f7ff]">
-        
-        <!-- SEÇÃO SOBRE MIM COM FOTO -->
-        <section id="about" class="px-10 py-10">
-            <div class="flex flex-col md:flex-row items-center gap-10 md:gap-12">
-                <!-- Coluna da Imagem -->
-                <div class="w-full md:w-1/6 flex-shrink-0 z-10">
-                    <!-- Substitua o 'src' pela sua foto -->
-                    <img src="imagens/eu.jpg" alt="Foto de Samuel Spineli" class="w-64 h-64 md:w-full md:h-auto mx-auto rounded-full border-4 border-[#f0f] shadow-[0_0_15px_#f0f]">
-                </div>
-                <!-- Coluna do Texto -->
-                 <!-- Graduado em Ciência da Computação com conhecimentos em diversas linguagens de programação, ambientes de desenvolvimento e grande familiaridade com GitHub. 
-                  Busco novas oportunidades de crescimento e desenvolvimento profissional em uma empresa de tecnologia, sempre disposto a aprender e evoluir em minha carreira.</p> -->
-                <div class="w-full md:w-2/3 text-center md:text-left">
-                    <h2 class="text-4xl pb-5 border-b border-[#00f7ff] text-glow-magenta">> Sobre Mim</h2>
-                    <p class="mt-8 text-xl text-glow"> Aspirante a juíz de concursos de jardinagem. Andarilho em treinamento.</p>
+    <section id="experience" class="py-24 bg-slate-50 dark:bg-slate-950">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-20">
+            <div class="lg:col-span-8">
+                <h3 class="text-3xl font-black mb-12 uppercase" data-i18n="section-exp"></h3>
+                <div id="experience-list" class="space-y-12 border-l-2 border-slate-200 dark:border-slate-800 ml-4">
                 </div>
             </div>
-        </section>
-
-        <section id="projects" class="px-10 py-10">
-            <h2 class="text-4xl pb-5 border-b border-[#00f7ff] text-glow-magenta">> Meus Projetos</h2>
-            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14">
-
-                
-
-                <!-- Card de Projeto 2 -->
-                <div class="project-card bg-[rgba(15,15,35,0.8)] border border-[#f0f] shadow-[0_0_10px_-5px_#f0f] hover:-translate-y-2 hover:shadow-[0_0_15px_#f0f,_0_0_25px_#00f7ff] overflow-hidden flex flex-col transition-all duration-300">
-                    <img src="imagens/classificador.png" alt="Imagem do Projeto Hemocentro" class="w-full h-auto block saturate-60 contrast-110 group-hover:saturate-100 transition-all duration-300">
-                    <div class="p-6 md:p-8 flex flex-col flex-grow">
-                        <h3 class="text-3xl mb-3 text-glow-magenta">GenreID</h3>
-                         <div class="description-wrapper mb-6 flex-grow">
-                            <p class="project-description text-md text-glow transition-all duration-300">
-                                Este projeto, elaborado para o Trabalho de Conclusão de Curso, consiste em um sistema para classificar o gênero musical de melodias e gerar acompanhamentos automáticos em formato MIDI. Um modelo Random Forest foi empregado para a classificação de gênero, utilizando características extraídas de mel-espectrogramas.
-
-                                A aplicação é desenvolvida com Flask e permite as seguintes interações:
-
-                                Upload de uma melodia (formatos MIDI, MP3, WAV, etc.) ou gravação em tempo real para análise.
-                                Predição do gênero musical da melodia e sugestões de instrumentos para acompanhamento.
-                                Geração e download de um arquivo MIDI de acompanhamento, ajustado ao BPM e ao gênero/instrumento selecionados.</p>
-                        </div>
-                        <button class="toggle-description-btn mb-4 text-glow-link self-start hidden">> Mostrar Mais_</button>
-                        <div class="mt-auto">
-                            <a href="https://github.com/samuelspineli34/GenreID" class="inline-block py-2 px-3 border border-[#00f7ff] text-[#00f7ff] text-base hover:bg-[#00f7ff] hover:text-[#0d0221] hover:shadow-lg hover:shadow-[#00f7ff]/50 transition-all duration-200 btn-hover-effect">> Ver Projeto_</a>
-                        </div>
-                    </div>
+            <!-- EXPERIENCE -->
+            <div class="lg:col-span-4">
+                <h3 class="text-3xl font-black mb-12 uppercase tracking-tighter" data-i18n="section-edu"></h3>
+                <div
+                    class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col items-center text-center">
+                    <img src="/imagens/puc.png" alt="PUC Minas" class="w-24 dark:brightness-200">
+                    <p class="text-blue-600 font-bold text-sm uppercase tracking-wider" data-i18n="edu-degree"></p>
+                    <p class="text-slate-400 text-sm mt-2 font-medium">2020 — 2025</p>
+                    <p class="text-slate-500 text-xs mt-4">Belo Horizonte, MG</p>
                 </div>
-
-                <!-- Card de Projeto 2 -->
-                <div class="project-card bg-[rgba(15,15,35,0.8)] border border-[#f0f] shadow-[0_0_10px_-5px_#f0f] hover:-translate-y-2 hover:shadow-[0_0_15px_#f0f,_0_0_25px_#00f7ff] overflow-hidden flex flex-col transition-all duration-300">
-                    <img src="imagens/Hemocentro.png" alt="Imagem do Projeto Hemocentro" class="w-full h-auto block saturate-60 contrast-110 group-hover:saturate-100 transition-all duration-300">
-                    <div class="p-6 md:p-8 flex flex-col flex-grow">
-                        <h3 class="text-3xl mb-3 text-glow-magenta">Conexão Hemocentros</h3>
-                         <div class="description-wrapper mb-6 flex-grow">
-                            <p class="project-description text-md text-glow transition-all duration-300">
-                                O aplicativo facilita a doação de sangue ao informar horários de funcionamento dos hemocentros e localizar os pontos de doação mais próximos, além de ajudar na organização de futuras doações com base na última doação e no tipo sanguíneo do doador, identificando instituições que precisam desse tipo de sangue. Utilizando a geolocalização do celular e a API do Google Maps, o aplicativo encontra hemocentros próximos, e o Firebase armazena o histórico de doações, permitindo o cadastro de hemocentros para simplificar a comunicação com os doadores. Desenvolvida em Flutter, a interface oferece uma experiência intuitiva, com login e cadastro específicos para cada perfil: doadores podem encontrar hemocentros e gerenciar suas doações, enquanto os hemocentros atualizam horários e tipos sanguíneos necessários.
-                            </p>
-                        </div>
-                        <button class="toggle-description-btn mb-4 text-glow-link self-start hidden">> Mostrar Mais_</button>
-                        <div class="mt-auto">
-                            <a href="https://github.com/samuelspineli34/Hemocentro" class="inline-block py-2 px-3 border border-[#00f7ff] text-[#00f7ff] text-base hover:bg-[#00f7ff] hover:text-[#0d0221] hover:shadow-lg hover:shadow-[#00f7ff]/50 transition-all duration-200 btn-hover-effect">> Ver Projeto_</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card de Projeto 3 -->
-                <div class="project-card bg-[rgba(15,15,35,0.8)] border border-[#f0f] shadow-[0_0_10px_-5px_#f0f] hover:-translate-y-2 hover:shadow-[0_0_15px_#f0f,_0_0_25px_#00f7ff] overflow-hidden flex flex-col transition-all duration-300">
-                    <img src="imagens/joelho.png" alt="Imagem do Projeto Hemocentro" class="w-full h-auto block saturate-60 contrast-110 group-hover:saturate-100 transition-all duration-300">
-                    <div class="p-6 md:p-8 flex flex-col flex-grow">
-                        <h3 class="text-3xl mb-3 text-glow-magenta">Classificador de Osteoartrose</h3>
-                         <div class="description-wrapper mb-6 flex-grow">
-                            <p class="project-description text-md text-glow transition-all duration-300">
-                                O projeto tem como objetivo a construção de um software para a detecção da Osteoartrose de joelho, o sistema deverá englobar também tecnologias de computação paralela afim de melhorar o seu desempenho, assim como ser um sistema distribuído escalável.                            </p>
-                        </div>
-                        <button class="toggle-description-btn mb-4 text-glow-link self-start hidden">> Mostrar Mais_</button>
-                        <div class="mt-auto">
-                            <a href="https://github.com/samuelspineli34/Classificador-de-Osteoartrose" class="inline-block py-2 px-3 border border-[#00f7ff] text-[#00f7ff] text-base hover:bg-[#00f7ff] hover:text-[#0d0221] hover:shadow-lg hover:shadow-[#00f7ff]/50 transition-all duration-200 btn-hover-effect">> Ver Projeto_</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card de Projeto 4 -->
-                <div class="project-card bg-[rgba(15,15,35,0.8)] border border-[#f0f] shadow-[0_0_10px_-5px_#f0f] hover:-translate-y-2 hover:shadow-[0_0_15px_#f0f,_0_0_25px_#00f7ff] overflow-hidden flex flex-col transition-all duration-300">
-                    <img src="imagens/calculadora.png" alt="Imagem do Projeto Hemocentro" class="w-full h-auto block saturate-60 contrast-110 group-hover:saturate-100 transition-all duration-300">
-                    <div class="p-6 md:p-8 flex flex-col flex-grow">
-                        <h3 class="text-3xl mb-3 text-glow-magenta">Transformador e Renderizador Geométrico</h3>
-                         <div class="description-wrapper mb-6 flex-grow">
-                            <p class="project-description text-md text-glow transition-all duration-300">
-                            A aplicação realiza diversas transformações geométricas (translação, escala, rotação, reflexão, cisalhamento) e renderiza as conexões dos pontos usando algoritmos gráficos (DDA e Bresenham).                        </div>
-                        <button class="toggle-description-btn mb-4 text-glow-link self-start hidden">> Mostrar Mais_</button>
-                        <div class="mt-auto">
-                            <a href="https://github.com/samuelspineli34/TP1_CG" class="inline-block py-2 px-3 border border-[#00f7ff] text-[#00f7ff] text-base hover:bg-[#00f7ff] hover:text-[#0d0221] hover:shadow-lg hover:shadow-[#00f7ff]/50 transition-all duration-200 btn-hover-effect">> Ver Projeto_</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card de Projeto (Estrutura Repetível) -->
-                <div class="project-card bg-[rgba(15,15,35,0.8)] border border-[#f0f] shadow-[0_0_10px_-5px_#f0f] hover:-translate-y-2 hover:shadow-[0_0_15px_#f0f,_0_0_25px_#00f7ff] overflow-hidden flex flex-col transition-all duration-300">
-                    <img src="imagens/uvc.png" alt="Imagem do Projeto UVC-Seguro" class="w-full h-auto block saturate-60 contrast-110 group-hover:saturate-100 transition-all duration-300">
-                    <div class="p-6 md:p-8 flex flex-col flex-grow">
-                        <h3 class="text-3xl mb-3 text-glow-magenta">UVC-Seguro</h3>
-                        <div class="description-wrapper mb-6 flex-grow">
-                             <p class="project-description text-md text-glow transition-all duration-300">
-                                Desenvolvimento de um aplicativo em Flutter para monitoramento de radiação UV, com layout responsivo e intuitivo, prototipado no Figma. Integração eficiente com o dispositivo ESP32 WROOM utilizando a biblioteca http do Dart para troca de dados em tempo real. A interface foi projetada para proporcionar uma experiência de navegação fluida e facilitar a interpretação dos níveis de radiação UV, priorizando a usabilidade e a eficiência na comunicação entre o aplicativo e o hardware.
-                            </p>
-                        </div>
-                        <button class="toggle-description-btn mb-4 text-glow-link self-start hidden">> Mostrar Mais_</button>
-                        <div class="mt-auto">
-                            <a href="https://github.com/samuelspineli34/Aplicativo-Risco-UV" class="inline-block py-2 px-3 border border-[#00f7ff] text-[#00f7ff] text-base hover:bg-[#00f7ff] hover:text-[#0d0221] hover:shadow-lg hover:shadow-[#00f7ff]/50 transition-all duration-200 btn-hover-effect">> Ver Projeto_</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card de Projeto (Estrutura Repetível) -->
-                <div class="project-card bg-[rgba(15,15,35,0.8)] border border-[#f0f] shadow-[0_0_10px_-5px_#f0f] hover:-translate-y-2 hover:shadow-[0_0_15px_#f0f,_0_0_25px_#00f7ff] overflow-hidden flex flex-col transition-all duration-300">
-                    <img src="imagens/blockchain.png" alt="Imagem do Projeto UVC-Seguro" class="w-full h-auto block saturate-60 contrast-110 group-hover:saturate-100 transition-all duration-300">
-                    <div class="p-6 md:p-8 flex flex-col flex-grow">
-                        <h3 class="text-3xl mb-3 text-glow-magenta">Paralelismo em blockchain</h3>
-                        <div class="description-wrapper mb-6 flex-grow">
-                             <p class="project-description text-md text-glow transition-all duration-300">
-                            Técnicas de computação paralela no processo de geração de hashes em blockchain, o programa utiliza técnicas de paralelismo na classe block.cpp pois ela é responsável pelo algoritmo de mineração na blockchain.</p>
-                        </div>
-                        <button class="toggle-description-btn mb-4 text-glow-link self-start hidden">> Mostrar Mais_</button>
-                        <div class="mt-auto">
-                            <a href="https://github.com/samuelspineli34/Blockchain-Paralela" class="inline-block py-2 px-3 border border-[#00f7ff] text-[#00f7ff] text-base hover:bg-[#00f7ff] hover:text-[#0d0221] hover:shadow-lg hover:shadow-[#00f7ff]/50 transition-all duration-200 btn-hover-effect">> Ver Projeto_</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card de Projeto (Estrutura Repetível) -->
-                <div class="project-card bg-[rgba(15,15,35,0.8)] border border-[#f0f] shadow-[0_0_10px_-5px_#f0f] hover:-translate-y-2 hover:shadow-[0_0_15px_#f0f,_0_0_25px_#00f7ff] overflow-hidden flex flex-col transition-all duration-300">
-                    <img src="imagens/lista.png" alt="Imagem do Projeto UVC-Seguro" class="w-full h-auto block saturate-60 contrast-110 group-hover:saturate-100 transition-all duration-300">
-                    <div class="p-6 md:p-8 flex flex-col flex-grow">
-                        <h3 class="text-3xl mb-3 text-glow-magenta">Assistente Inteligente para PDFs</h3>
-                        <div class="description-wrapper mb-6 flex-grow">
-                             <p class="project-description text-md text-glow transition-all duration-300">
-                            O ListaChatGPT é um assistente conversacional que responde a perguntas com base em documentos PDF enviados pelo usuário. Ele utiliza técnicas de Processamento de Linguagem Natural (PLN), embeddings semânticos e integração com o modelo GPT-3.5 para oferecer respostas contextuais e precisas.                        </div>
-                        <button class="toggle-description-btn mb-4 text-glow-link self-start hidden">> Mostrar Mais_</button>
-                        <div class="mt-auto">
-                            <a href="https://github.com/samuelspineli34/ListaChatGPT" class="inline-block py-2 px-3 border border-[#00f7ff] text-[#00f7ff] text-base hover:bg-[#00f7ff] hover:text-[#0d0221] hover:shadow-lg hover:shadow-[#00f7ff]/50 transition-all duration-200 btn-hover-effect">> Ver Projeto_</a>
-                        </div>
-                    </div>
-                </div>
-
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <!-- RODAPÉ -->
-    <footer id="contact" class="text-center py-12 px-4 bg-black/60 border-t-2 border-[#f0f]">
-        <h2 class="text-4xl text-glow-magenta">> Contato</h2>
-        <p class="mt-4 text-xl text-glow">Você pode me encontrar nas seguintes plataformas:</p>
-        <div class="mt-6 flex justify-center items-baseline space-x-4 md:space-x-6 text-xl">
-            <a href="mailto:samuelspinelli34@gmail.com" class="text-glow-link">EMAIL</a>
-            <span class="text-[#ff80ff]">|</span>
-            <a href="https://www.linkedin.com/in/samuel-spineli-9945531b5/" class="text-glow-link">LINKEDIN</a>
-            <span class="text-[#ff80ff]">|</span>
-            <a href="https://github.com/samuelspineli34/" class="text-glow-link">GITHUB</a>
+    <section id="projects" class="py-24 bg-white dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <h3 class="text-4xl font-black text-center mb-20 uppercase" data-i18n="section-projects"></h3>
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </div>
+    </section>
+
+    <footer id="contact" class="py-24 bg-slate-950 text-white">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h3 class="text-4xl font-black mb-12" data-i18n="footer-contact"></h3>
+            <div class="flex flex-wrap justify-center gap-10 font-bold text-slate-400 uppercase tracking-widest mb-10">
+                <a href="mailto:samuelspinelli34@gmail.com" class="hover:text-blue-500">Email</a>
+                <a href="https://linkedin.com/in/samuel-spineli" class="hover:text-blue-500">LinkedIn</a>
+                <a href="https://github.com/samuelspineli34" class="hover:text-blue-500">GitHub</a>
+            </div>
+            <p class="text-[10px] text-slate-600 tracking-[0.5em]">© 2026 SAMUEL SPINELI</p>
         </div>
     </footer>
 
-    <!-- SCRIPT PARA TRUNCAR TEXTO -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const characterLimit = 250; // Defina o limite de caracteres
-            const projectCards = document.querySelectorAll('.project-card');
-
-            projectCards.forEach(card => {
-                const descriptionP = card.querySelector('.project-description');
-                const toggleBtn = card.querySelector('.toggle-description-btn');
-
-                if (!descriptionP || !toggleBtn) return;
-
-                const fullText = descriptionP.innerText;
-
-                if (fullText.length > characterLimit) {
-                    const truncatedText = fullText.substring(0, characterLimit) + '...';
-                    descriptionP.innerText = truncatedText;
-                    
-                    // Armazena os textos no elemento para fácil acesso
-                    descriptionP.setAttribute('data-full-text', fullText);
-                    descriptionP.setAttribute('data-truncated-text', truncatedText);
-                    
-                    toggleBtn.classList.remove('hidden'); // Mostra o botão
-
-                    toggleBtn.addEventListener('click', () => {
-                        const isExpanded = descriptionP.innerText === fullText;
-                        if (isExpanded) {
-                            descriptionP.innerText = descriptionP.dataset.truncatedText;
-                            toggleBtn.innerText = '> Mostrar Mais_';
-                        } else {
-                            descriptionP.innerText = descriptionP.dataset.fullText;
-                            toggleBtn.innerText = '> Mostrar Menos_';
-                        }
-                    });
-                }
-            });
-        });
-    </script>
-
+    <!-- CORREÇÃO: type="module" e caminho absoluto /src/ -->
+    <script type="module" src="/src/app.ts"></script>
 </body>
+
 </html>

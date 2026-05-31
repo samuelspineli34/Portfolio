@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.flag-btn {
+    opacity: 0.3;
+    filter: grayscale(1);
+    transition: 0.3s;
+}
+.flag-btn.active {
+    opacity: 1;
+    filter: grayscale(0);
+}
+
+.tech-badge {
+    @apply px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-800 text-[10px] font-bold rounded uppercase tracking-tighter shadow-sm;
+}
+
+.project-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover {
+    @apply border-blue-400 dark:border-blue-500 shadow-xl;
+    transform: translateY(-4px);
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -41px;
+    top: 8px;
+    width: 16px;
+    height: 16px;
+    background: #2563eb;
+    border: 4px solid #f8fafc;
+    border-radius: 50%;
+}
+
+.dark .timeline-item::before {
+    border-color: #020617;
+}
