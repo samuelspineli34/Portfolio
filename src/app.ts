@@ -7,6 +7,8 @@ declare global {
     }
 }
 
+const BASE_URL = import.meta.env.BASE_URL;
+
 const toggleTheme = (): void => {
     document.documentElement.classList.toggle('dark');
     const isDark = document.documentElement.classList.contains('dark');
@@ -70,10 +72,11 @@ const renderProjects = (lang: 'pt' | 'en'): void => {
     const featured = projectData.filter(p => p.featured);
     const others = projectData.filter(p => !p.featured);
 
-    const cardHtml = (p: Project, isLarge: boolean) => `
+        const cardHtml = (p: Project, isLarge: boolean) => `
         <div class="project-card bg-white dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col h-full group">
             <div class="relative overflow-hidden ${isLarge ? 'h-64' : 'h-48'}">
-                <img src="/imagens/${p.img}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="${p.title}">
+                <!-- 2. Use o BASE_URL para o caminho das imagens -->
+                <img src="${BASE_URL}imagens/${p.img}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="${p.title}">
                 ${p.hasCiCd ? `<div class="absolute top-4 left-4 bg-blue-600 text-white text-[8px] font-black px-2 py-1 rounded shadow-lg">CI/CD PIPELINE ACTIVE</div>` : ''}
             </div>
             <div class="p-8 flex flex-col flex-grow">
@@ -86,16 +89,8 @@ const renderProjects = (lang: 'pt' | 'en'): void => {
                 </p>
                 <div class="flex flex-wrap gap-y-2 gap-x-6 mt-auto pt-4 border-t border-slate-100 dark:border-slate-700">
                     <a href="${p.link}" target="_blank" class="text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-widest hover:underline">GitHub</a>
-                    
-                    ${p.liveLink ? `
-                        <a href="${p.liveLink}" target="_blank" class="text-emerald-600 dark:text-emerald-400 text-xs font-black uppercase tracking-widest hover:underline">Live Demo</a>
-                    ` : ''}
-
-                    ${p.articleLink ? `
-                        <a href="${p.articleLink}" target="_blank" class="text-amber-600 dark:text-amber-400 text-xs font-black uppercase tracking-widest hover:underline">
-                            ${translations[lang]["read_article"]}
-                        </a>
-                    ` : ''}
+                    ${p.liveLink ? `<a href="${p.liveLink}" target="_blank" class="text-emerald-600 dark:text-emerald-400 text-xs font-black uppercase tracking-widest hover:underline">Live Demo</a>` : ''}
+                    ${p.articleLink ? `<a href="${p.articleLink}" target="_blank" class="text-amber-600 dark:text-amber-400 text-xs font-black uppercase tracking-widest hover:underline">${translations[lang]["read_article"]}</a>` : ''}
                 </div>
             </div>
         </div>
