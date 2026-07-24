@@ -38,6 +38,7 @@ export const translations: any = {
         // Descrição do TCC (Baseada no Artigo)
         "desc-genre": "Trabalho de Conclusão de Curso (TCC). Pesquisa comparativa entre Random Forest e Redes Neurais para identificação de gêneros musicais. O sistema processa áudio via Mel-Espectrogramas (Escala Mel de Stevens) para extrair características tonais e harmônicas, automatizando a geração de acompanhamentos MIDI com coerência rítmica baseada no BPM detectado.",
 
+        "desc-kaiji": "Extensão de produtividade gamificada para o VS Code baseada na obra de Nobuyuki Fukumoto. Transforma o ato de salvar arquivos válidos em um ciclo de risco e recompensa com moedas virtuais, caça-níquel em tempo real, conquistas e decoração isométrica.",
         "desc-osaka": "Sistema corporativo de Ticket Management. Arquitetura modular (DAO/DTO), controle de acesso RBAC granular, autenticação JWT e segurança de credenciais com hashing scrypt via PostgreSQL.",
         "desc-hemo": "Logística crítica para doação de sangue. Integração com Google Maps API para geolocalização e sincronização assíncrona via Firebase, conectando doadores a demandas hospitalares em tempo real.",
         "desc-uvd": "Automação de extração de mídia desktop. Integração de baixo nível com yt-dlp e multiplexação de streams 4K via FFmpeg, otimizado para alta performance.",
@@ -71,6 +72,7 @@ export const translations: any = {
 
         "desc-genre": "Undergraduate Thesis (TCC). Comparative research between Random Forest and Neural Networks for music genre identification. The system processes audio via Mel-Spectrograms (Stevens Mel Scale) to extract tonal and harmonic features, automating MIDI accompaniment generation with rhythmic coherence based on detected BPM.",
 
+        "desc-kaiji": "Gamified productivity extension for VS Code inspired by Nobuyuki Fukumoto's work. It transforms valid file saves into a high-stakes loop with virtual coins, built-in slots, achievements, and isometric room customization.",
         "desc-osaka": "Enterprise Ticket Management solution. Modular architecture (DAO/DTO), granular RBAC access control, JWT authentication, and scrypt credential security via PostgreSQL.",
         "desc-hemo": "Critical logistics for blood donation. Integration with Google Maps API for geolocation and asynchronous synchronization via Firebase, connecting donors to real-time hospital demands.",
         "desc-uvd": "Desktop media extraction automation. Low-level yt-dlp integration and 4K stream multiplexing via FFmpeg, performance-optimized for high throughput.",
@@ -85,6 +87,15 @@ export const translations: any = {
 
 export const projectData: Project[] = [
     {
+        title: "Kaiji (VS Code Extension)",
+        img: "kaiji.png",
+        tech: ["TypeScript", "VS Code API", "Webviews"],
+        link: "https://github.com/samuelspineli34/kaiji",
+        liveLink: "https://marketplace.visualstudio.com/items?itemName=NullGarden.kaiji",
+        featured: true,
+        descKey: "desc-kaiji"
+    },
+    {
         title: "Osaka Tech CRM",
         img: "osaka.png",
         tech: ["Python", "JWT", "DAO/DTO"],
@@ -92,14 +103,14 @@ export const projectData: Project[] = [
         liveLink: "https://osakatech.vercel.app/login",
         featured: true,
         descKey: "desc-osaka",
-        hasCiCd: true // Projeto com auto-deploy
+        hasCiCd: true
     },
     {
         title: "GenreID AI (TCC)",
         img: "classificador.png",
         tech: ["ML", "Librosa", "Flask"],
         link: "https://github.com/samuelspineli34/GenreID",
-        articleLink: "https://bib.pucminas.br/pergamumweb/download/F7248639-17FD-4F19-AF95-68B4A461C381.pdf", // Link do PDF
+        articleLink: "https://bib.pucminas.br/pergamumweb/download/F7248639-17FD-4F19-AF95-68B4A461C381.pdf",
         featured: true,
         descKey: "desc-genre"
     },
@@ -119,7 +130,6 @@ export const projectData: Project[] = [
         featured: false,
         descKey: "desc-uvd"
     },
-    
     {
         title: "Fretly",
         img: "fretly.png",
@@ -128,7 +138,7 @@ export const projectData: Project[] = [
         liveLink: "http://samuelspineli34.github.io/Fretly/",
         featured: false,
         descKey: "desc-fretly",
-        hasCiCd: true // Projeto com auto-deploy
+        hasCiCd: true
     },
     { title: "Blockchain Parallel", img: "blockchain.png", tech: ["C++", "HPC"], link: "https://github.com/samuelspineli34/Blockchain-Paralela", featured: false, descKey: "desc-block" },
     { title: "UVC Seguro", img: "uvc.png", tech: ["ESP32", "Flutter"], link: "https://github.com/samuelspineli34/Aplicativo-Risco-UV", featured: false, descKey: "desc-uvc" },
