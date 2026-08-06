@@ -1,105 +1,185 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="scroll-smooth">
+<html lang="pt-br" class="scroll-smooth dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Samuel Spineli | Software Developer</title>
+
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;600;800&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="src/style.css">
     <script type="module" src="src/app.ts"></script>
     <link rel="icon" type="image/png" href="/logo.png">
 
+    <!-- LinkedIn Badge Script -->
+    <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+
     <script>
-        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        } else {
             document.documentElement.classList.add('dark');
         }
     </script>
 </head>
 
-<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+<body
+    class="bg-zinc-50 dark:bg-black text-zinc-900 dark:text-zinc-100 font-sans transition-colors duration-300 bg-tech-grid selection:bg-cyan-500 selection:text-black">
 
+    <!-- HEADER -->
     <header
-        class="fixed top-0 z-50 w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex flex-col">
-                <span class="font-black text-xl tracking-tighter">SAMUEL SPINELI</span>
-                <span class="text-[10px] font-bold text-blue-600 tracking-[0.2em]" data-i18n="nav-role"></span>
+        class="fixed top-0 z-50 w-full bg-white/80 dark:bg-black/80 backdrop-blur-xl border-b border-zinc-200 dark:border-zinc-900">
+        <div class="max-w-7xl mx-auto px-6 py-3.5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <span class="inline-block w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                <div class="flex flex-col">
+                    <span class="font-mono font-bold text-sm tracking-tight text-zinc-900 dark:text-white">Samuel
+                        Spineli</span>
+                    <span class="text-[10px] font-mono text-cyan-600 dark:text-cyan-400 tracking-wider"
+                        data-i18n="nav-role"></span>
+                </div>
             </div>
+
             <div class="flex items-center gap-6">
                 <nav
-                    class="hidden lg:flex gap-8 text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">
-                    <a href="#about" data-i18n="nav-about"></a>
-                    <a href="#experience" data-i18n="nav-exp"></a>
-                    <a href="#projects" data-i18n="nav-projects"></a>
+                    class="hidden lg:flex gap-8 text-xs font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+                    <a href="#about" class="hover:text-cyan-400 transition-colors" data-i18n="nav-about"></a>
+                    <a href="#experience" class="hover:text-cyan-400 transition-colors" data-i18n="nav-exp"></a>
+                    <a href="#projects" class="hover:text-cyan-400 transition-colors" data-i18n="nav-projects"></a>
                 </nav>
-                <div class="flex items-center gap-6 border-l pl-6 border-slate-200 dark:border-slate-700">
-                    <button onclick="toggleTheme()" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800"><span
-                            id="theme-icon"></span></button>
-                    <div class="flex gap-2">
-                        <button onclick="setLanguage('pt')" id="btn-pt" class="flag-btn active"><img
-                                src="https://flagcdn.com/w40/br.png" width="22"></button>
-                        <button onclick="setLanguage('en')" id="btn-en" class="flag-btn"><img
-                                src="https://flagcdn.com/w40/gb.png" width="22"></button>
+                <div class="flex items-center gap-4 border-l pl-6 border-zinc-200 dark:border-zinc-800">
+                    <button onclick="toggleTheme()"
+                        class="p-2 rounded-lg bg-zinc-100 dark:bg-[#0a0a0a] border border-zinc-200 dark:border-zinc-800/80 hover:border-cyan-500/40 transition-colors"
+                        aria-label="Toggle Theme">
+                        <span id="theme-icon"></span>
+                    </button>
+                    <div class="flex gap-1.5">
+                        <button onclick="setLanguage('pt')" id="btn-pt" class="flag-btn active" title="Português">
+                            <img src="https://flagcdn.com/w40/br.png" width="20" alt="BR" class="rounded-sm">
+                        </button>
+                        <button onclick="setLanguage('en')" id="btn-en" class="flag-btn" title="English">
+                            <img src="https://flagcdn.com/w40/gb.png" width="20" alt="EN" class="rounded-sm">
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <section id="about" class="pt-40 pb-20 bg-white dark:bg-slate-900 transition-colors">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            <div class="lg:col-span-4 flex justify-center">
-                <!-- Ajustado caminho da imagem -->
-                <img src="imagens/eu.jpg"
-                    class="w-72 h-80 object-cover rounded-2xl shadow-2xl border-4 border-slate-50 dark:border-slate-800">
+    <!-- HERO / ABOUT COM CANVAS DE REDE DE PARTÍCULAS EM SEGUNDO PLANO -->
+    <section id="about" class="pt-36 pb-20 dark:bg-black transition-colors relative overflow-hidden">
+
+        <!-- Canvas Interativo de Linhas Brancas (Plexo) por baixo das fotos e textos -->
+        <canvas id="plexus-canvas"
+            class="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-40 dark:opacity-30"></canvas>
+
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+
+            <!-- COLUNA ESQUERDA: SELO LINKEDIN / FOTO REDONDA -->
+            <div class="lg:col-span-4 flex justify-center items-center">
+                <div id="linkedin-badge-container" class="flex justify-center items-center"></div>
             </div>
-            <div class="lg:col-span-8">
-                <h1 class="text-6xl font-black mb-4">Samuel Spineli</h1>
-                <p class="text-2xl text-blue-600 font-bold mb-8 uppercase tracking-wide" data-i18n="nav-role"></p>
-                <div class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-10" data-i18n="hero-summary">
+
+            <!-- COLUNA DIREITA: Nome, Bio e Tech Stack -->
+            <div class="lg:col-span-8 flex flex-col">
+                <h1 class="text-5xl lg:text-6xl font-black tracking-tight text-zinc-900 dark:text-white mb-2">Samuel
+                    Spineli</h1>
+                <p class="text-xl text-cyan-600 dark:text-cyan-400 font-mono font-semibold mb-6 tracking-wide"
+                    data-i18n="nav-role"></p>
+
+                <div class="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed mb-8 border-l-2 border-cyan-500/40 pl-4 bg-zinc-100/50 dark:bg-[#0a0a0a]/90 backdrop-blur-sm py-3.5 rounded-r-lg border-y border-r border-zinc-200 dark:border-zinc-800/50"
+                    data-i18n="hero-summary"></div>
+
+                <div class="mt-auto">
+                    <div id="tech-stack" class="flex flex-wrap gap-2"></div>
                 </div>
-                <div id="tech-stack" class="flex flex-wrap gap-2"></div>
             </div>
+
         </div>
     </section>
 
-    <section id="experience" class="py-24 bg-slate-50 dark:bg-slate-950">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-20">
+    <!-- EXPERIENCE & EDUCATION -->
+    <section id="experience"
+        class="py-20 border-t border-zinc-200 dark:border-zinc-900 bg-zinc-100/50 dark:bg-[#050505]">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16">
+
             <div class="lg:col-span-7">
-                <h3 class="text-3xl font-black mb-12 uppercase" data-i18n="section-exp"></h3>
-                <div id="experience-list" class="space-y-12 border-l-2 border-slate-200 dark:border-slate-800 ml-4">
+                <div class="flex items-center gap-3 mb-10">
+                    <span class="text-cyan-500 font-mono text-xl">&gt;</span>
+                    <h2 class="text-2xl font-mono font-bold tracking-tight uppercase text-zinc-900 dark:text-white"
+                        data-i18n="section-exp"></h2>
                 </div>
+                <div id="experience-list" class="space-y-10 border-l border-zinc-300 dark:border-zinc-800 ml-3"></div>
             </div>
-            <!-- EXPERIENCE -->
+
             <div class="lg:col-span-5">
-                <h3 class="text-3xl font-black mb-12 uppercase tracking-tighter" data-i18n="section-edu"></h3>
+                <div class="flex items-center gap-3 mb-10">
+                    <span class="text-cyan-500 font-mono text-xl">&gt;</span>
+                    <h2 class="text-2xl font-mono font-bold tracking-tight uppercase text-zinc-900 dark:text-white"
+                        data-i18n="section-edu"></h2>
+                </div>
+
                 <div
-                    class="bg-white dark:bg-slate-900 p-5 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col items-center text-center">
-                    <img src="imagens/puc.png" alt="PUC Minas" class="w-24 pb-1 dark:brightness-200">
-                    <p class="text-blue-600 font-bold text-sm uppercase tracking-wider" data-i18n="edu-degree"></p>
-                    <p class="text-slate-400 text-sm mt-2 font-medium">2020 — 2025</p>
-                    <p class="text-slate-500 text-xs mt-4">Belo Horizonte, MG</p>
+                    class="bg-white dark:bg-[#0a0a0a] p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800/80 shadow-sm flex flex-col items-center text-center hover:border-cyan-500/40 transition-colors">
+                    <img src="imagens/puc.png" alt="PUC Minas" class="w-20 mb-4 dark:brightness-200 dark:contrast-125">
+                    <h4 class="font-bold text-base text-zinc-900 dark:text-zinc-100" data-i18n="edu-degree"></h4>
+                    <p class="text-cyan-600 dark:text-cyan-400 font-mono text-xs mt-1">PUC Minas</p>
+                    <span
+                        class="inline-block mt-3 px-2.5 py-0.5 rounded font-mono text-xs bg-zinc-100 dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800">2020
+                        — 2025</span>
+                    <p class="text-zinc-500 text-xs mt-3">Belo Horizonte, MG • Brasil</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="projects" class="py-24 bg-white dark:bg-slate-900">
-        <div class="max-w-7xl mx-auto px-6">
-            <h3 class="text-4xl font-black text-center mb-20 uppercase" data-i18n="section-projects"></h3>
+    <!-- PROJECTS -->
+    <section id="projects"
+        class="py-24 border-t border-zinc-200 dark:border-zinc-900 dark:bg-black relative overflow-hidden">
+
+        <!-- Canvas de Linhas Brancas exclusivo para a seção de Projetos -->
+        <canvas id="plexus-canvas-projects"
+            class="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-40 dark:opacity-30"></canvas>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="flex flex-col items-center mb-16">
+                <h2 class="text-3xl font-mono font-bold uppercase tracking-tight text-zinc-900 dark:text-white"
+                    data-i18n="section-projects"></h2>
+            </div>
             <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
         </div>
     </section>
 
-    <footer id="contact" class="py-24 bg-slate-950 text-white">
+    <!-- FOOTER -->
+    <footer id="contact"
+        class="py-16 border-t border-zinc-200 dark:border-zinc-900 bg-zinc-100 dark:bg-[#050505] text-zinc-900 dark:text-zinc-100">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <h3 class="text-4xl font-black mb-12" data-i18n="footer-contact"></h3>
-            <div class="flex flex-wrap justify-center gap-10 font-bold text-slate-400 uppercase tracking-widest mb-10">
-                <a href="mailto:samuelspinelli34@gmail.com" class="hover:text-blue-500">Email</a>
-                <a href="https://linkedin.com/in/samuel-spineli" class="hover:text-blue-500">LinkedIn</a>
-                <a href="https://github.com/samuelspineli34" class="hover:text-blue-500">GitHub</a>
+            <h3 class="text-2xl font-mono font-bold mb-8 uppercase tracking-wider text-zinc-900 dark:text-white"
+                data-i18n="footer-contact"></h3>
+
+            <div
+                class="flex flex-wrap justify-center gap-8 font-mono text-xs text-zinc-500 dark:text-zinc-400 uppercase tracking-widest mb-10">
+                <a href="mailto:samuelspinelli34@gmail.com"
+                    class="hover:text-cyan-400 transition-colors flex items-center gap-2">
+                    <span class="text-cyan-500">[</span>Email<span class="text-cyan-500">]</span>
+                </a>
+                <a href="https://linkedin.com/in/samuel-spineli" target="_blank"
+                    class="hover:text-cyan-400 transition-colors flex items-center gap-2">
+                    <span class="text-cyan-500">[</span>LinkedIn<span class="text-cyan-500">]</span>
+                </a>
+                <a href="https://github.com/samuelspineli34" target="_blank"
+                    class="hover:text-cyan-400 transition-colors flex items-center gap-2">
+                    <span class="text-cyan-500">[</span>GitHub<span class="text-cyan-500">]</span>
+                </a>
             </div>
-            <p class="text-[10px] text-slate-600 tracking-[0.5em]">© 2026 SAMUEL SPINELI</p>
+
+            <p class="text-[13px] font-mono text-zinc-500 dark:text-zinc-600 tracking-[0.3em]">© 2026 SAMUEL SPINELI</p>
         </div>
     </footer>
 </body>

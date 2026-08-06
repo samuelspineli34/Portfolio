@@ -2,41 +2,195 @@
 @tailwind components;
 @tailwind utilities;
 
-.flag-btn {
-    opacity: 0.3;
-    filter: grayscale(1);
-    transition: 0.3s;
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+  }
 }
+
+/* Background Grid Pattern */
+.bg-tech-grid {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.dark .bg-tech-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Buttons and Badges */
+.flag-btn {
+  opacity: 0.35;
+  filter: grayscale(1);
+  transition: all 0.2s ease;
+}
+
+.flag-btn:hover,
 .flag-btn.active {
-    opacity: 1;
-    filter: grayscale(0);
+  opacity: 1;
+  filter: grayscale(0);
 }
 
 .tech-badge {
-    @apply px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-800 text-[10px] font-bold rounded uppercase tracking-tighter shadow-sm;
+  @apply px-2.5 py-1 bg-zinc-100 dark:bg-[#0a0a0a] text-cyan-700 dark:text-cyan-400 border border-zinc-200 dark:border-zinc-800/80 text-[11px] font-mono font-medium rounded-md tracking-tight shadow-sm transition-colors;
 }
 
+/* Efeito de Luz Radial (Spotlight) nos Cards ao passar o mouse */
 .project-card {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(6, 182, 212, 0.4),
+    transparent 40%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover::before {
+  opacity: 1;
 }
 
 .project-card:hover {
-    @apply border-blue-400 dark:border-blue-500 shadow-xl;
-    transform: translateY(-4px);
+  @apply border-cyan-500/40 shadow-2xl shadow-cyan-500/5;
+  transform: translateY(-3px);
 }
 
+/* Timeline Custom Bullet */
 .timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -41px;
-    top: 8px;
-    width: 16px;
-    height: 16px;
-    background: #2563eb;
-    border: 4px solid #f8fafc;
-    border-radius: 50%;
+  content: '';
+  position: absolute;
+  left: -29px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  background-color: #06b6d4; /* cyan-500 */
+  border: 3px solid #f4f4f5;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(6, 182, 212, 0.4);
 }
 
 .dark .timeline-item::before {
-    border-color: #020617;
+  border-color: #000000;
+}
+
+/* Quando o iframe do LinkedIn for injetado, esconde o card de fallback */
+#linkedin-badge-container:has(iframe) #linkedin-fallback {
+    display: none !important;
+}
+
+/* ==========================================
+   ANIMAÇÃO ESTILO WATCH DOGS (SCANLINE / GRID SWEEP)
+   ========================================== */
+
+/* Linha de varredura laser vertical */
+.watchdogs-scanline {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(6, 182, 212, 0.4) 20%,
+    rgba(255, 255, 255, 0.9) 30%,
+    rgba(6, 182, 212, 0.4) 50%,
+    transparent 10%
+  );
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
+  animation: watchDogsScan 5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes watchDogsScan {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+/* Feixes horizontais que passam no fundo */
+.watchdogs-grid-beam {
+  position: relative;
+  overflow: hidden;
+}
+
+.watchdogs-grid-beam::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.03) 35%,
+    rgba(255, 255, 255, 0.15) 40%,
+    rgba(255, 255, 255, 0.03) 45%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: watchDogsBeam 6s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes watchDogsBeam {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ==========================================
+   TRANSIÇÃO SUAVE DE SEÇÕES (SCROLL REVEAL)
+   ========================================== */
+.reveal-section {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+/* Estado quando a seção entra na tela */
+.reveal-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Smooth Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-black;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-zinc-800 rounded hover:bg-zinc-700;
 }

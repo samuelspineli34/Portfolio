@@ -10,7 +10,7 @@ export interface Project {
     articleLink?: string;
 }
 
-export const translations: any = {
+export const translations: Record<string, Record<string, string>> = {
     pt: {
         "nav-role": "ENGENHEIRO DE SOFTWARE",
         "nav-about": "Sobre", "nav-exp": "Experiência", "nav-projects": "Projetos", "nav-contact": "Contato",
@@ -18,26 +18,22 @@ export const translations: any = {
         "section-exp": "Trajetória Profissional",
         "section-edu": "Formação Acadêmica",
         "edu-degree": "Bacharelado em Ciência da Computação",
-        "section-projects": "Engenharia de Software & TCC",
+        "section-projects": "Projetos",
+        "section-eng-projects": "Engenharia de Software & TCC",
         "section-other-projects": "Ferramentas & Pesquisa Científica",
         "footer-contact": "Estabelecer Conexão",
         "read_article": "Ler Artigo Científico",
 
-        // Experiência Draft
         "exp_draft_role": "Desenvolvedor de Software",
         "exp_draft_desc": "Engenharia e manutenção de plataforma interna com stack TypeScript (Vite + Bun). Atuação estratégica no levantamento de requisitos com usuários e definição da arquitetura técnica. Responsável pela integração Full Stack (Python Flask), modelagem de dados relacionais em PostgreSQL e implementação de processos de build para deploy on-premise.",
 
-        // Experiência Telefonica
         "exp_tele_role": "Service Desk (Vivo)",
         "exp_tele_desc": "Diagnóstico de incidentes críticos (N1) em infraestrutura de rede e estações de trabalho corporativas. Gestão de identidades via Active Directory e documentação técnica de procedimentos operacionais sob rigorosos níveis de SLA.",
 
-        // Experiência Sermicro
         "exp_ser_role": "Analista de Suporte N1",
         "exp_ser_desc": "Atendimento inicial, categorização de incidentes e suporte remoto em ambiente de larga escala, garantindo a continuidade operacional de sistemas internos.",
 
-        // Descrição do TCC (Baseada no Artigo)
         "desc-genre": "Trabalho de Conclusão de Curso (TCC). Pesquisa comparativa entre Random Forest e Redes Neurais para identificação de gêneros musicais. O sistema processa áudio via Mel-Espectrogramas (Escala Mel de Stevens) para extrair características tonais e harmônicas, automatizando a geração de acompanhamentos MIDI com coerência rítmica baseada no BPM detectado.",
-
         "desc-kaiji": "Extensão de produtividade gamificada para o VS Code baseada na obra de Nobuyuki Fukumoto. Transforma o ato de salvar arquivos válidos em um ciclo de risco e recompensa com moedas virtuais, caça-níquel em tempo real, conquistas e decoração isométrica.",
         "desc-osaka": "Sistema corporativo de Ticket Management. Arquitetura modular (DAO/DTO), controle de acesso RBAC granular, autenticação JWT e segurança de credenciais com hashing scrypt via PostgreSQL.",
         "desc-hemo": "Logística crítica para doação de sangue. Integração com Google Maps API para geolocalização e sincronização assíncrona via Firebase, conectando doadores a demandas hospitalares em tempo real.",
@@ -56,22 +52,20 @@ export const translations: any = {
         "section-exp": "Professional Path",
         "section-edu": "Education",
         "edu-degree": "B.S. in Computer Science",
-        "section-projects": "Engineering Systems & Thesis",
+        "section-projects": "Projects",
+        "section-eng-projects": "Software Engineering & Thesis",
         "section-other-projects": "Tools & Scientific Research",
         "footer-contact": "Connect",
         "read_article": "Read Scientific Paper",
 
         "exp_draft_role": "Software Developer",
         "exp_draft_desc": "Internal engineering platform development using TypeScript (Vite + Bun). Strategic requirements gathering with users and technical architecture design. Responsible for Full Stack integration (Python Flask), PostgreSQL relational data modeling, and on-premise infrastructure deployment.",
-
         "exp_tele_role": "L1 Technical Support",
         "exp_tele_desc": "Diagnosis and resolution of critical incidents in network infrastructure and corporate workstations. Identity management via Active Directory and technical documentation under strict SLAs.",
-
         "exp_ser_role": "Support Specialist",
         "exp_ser_desc": "Initial incident handling and remote support in large-scale environments, ensuring operational continuity for internal systems.",
 
         "desc-genre": "Undergraduate Thesis (TCC). Comparative research between Random Forest and Neural Networks for music genre identification. The system processes audio via Mel-Spectrograms (Stevens Mel Scale) to extract tonal and harmonic features, automating MIDI accompaniment generation with rhythmic coherence based on detected BPM.",
-
         "desc-kaiji": "Gamified productivity extension for VS Code inspired by Nobuyuki Fukumoto's work. It transforms valid file saves into a high-stakes loop with virtual coins, built-in slots, achievements, and isometric room customization.",
         "desc-osaka": "Enterprise Ticket Management solution. Modular architecture (DAO/DTO), granular RBAC access control, JWT authentication, and scrypt credential security via PostgreSQL.",
         "desc-hemo": "Critical logistics for blood donation. Integration with Google Maps API for geolocation and asynchronous synchronization via Firebase, connecting donors to real-time hospital demands.",
