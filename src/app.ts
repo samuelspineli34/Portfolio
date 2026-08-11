@@ -1,4 +1,5 @@
 import { translations, projectData, Project } from './translations';
+import { initVisitorCounter } from './counter';
 
 declare global {
     interface Window {
@@ -226,6 +227,7 @@ const setLanguage = (lang: 'pt' | 'en'): void => {
     renderExperience(lang);
     renderProjects(lang);
     renderTechStack();
+    initVisitorCounter(lang);
 };
 
 const renderTechStack = (): void => {

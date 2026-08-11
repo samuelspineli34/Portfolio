@@ -44,6 +44,10 @@ export const translations: Record<string, Record<string, string>> = {
         "desc-block": "throughput de mineração em Blockchain. Otimização de processamento de hashes através de paralelismo de hardware em C++.",
         "desc-lista": "Implementação de RAG (Retrieval-Augmented Generation) para consulta semântica em documentos PDF utilizando modelos LLM da OpenAI.",
         "desc-geo": "Renderizador gráfico fundamentado em geometria analítica. Implementação de algoritmos Bresenham e DDA para transformações lineares 2D.",
+
+        "counter_visits": "VISUALIZAÇÕES",
+        "counter_latency": "LATÊNCIA",
+        "counter_status": "SISTEMA ONLINE",
     },
     en: {
         "nav-role": "SOFTWARE ENGINEER",
@@ -76,6 +80,10 @@ export const translations: Record<string, Record<string, string>> = {
         "desc-block": "Blockchain mining throughput. Optimization of hash processing through hardware parallelism in C++.",
         "desc-lista": "RAG (Retrieval-Augmented Generation) implementation for semantic PDF analysis using OpenAI LLM models.",
         "desc-geo": "Graphical renderer based on analytical geometry. Low-level implementation of Bresenham and DDA algorithms for 2D linear transformations.",
+
+        "counter_visits": "PAGE VIEWS",
+        "counter_latency": "LATENCY",
+        "counter_status": "SYSTEM ONLINE",
     }
 };
 
