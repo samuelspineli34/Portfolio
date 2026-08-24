@@ -44,6 +44,7 @@ export const translations: Record<string, Record<string, string>> = {
         "desc-block": "throughput de mineração em Blockchain. Otimização de processamento de hashes através de paralelismo de hardware em C++.",
         "desc-lista": "Implementação de RAG (Retrieval-Augmented Generation) para consulta semântica em documentos PDF utilizando modelos LLM da OpenAI.",
         "desc-geo": "Renderizador gráfico fundamentado em geometria analítica. Implementação de algoritmos Bresenham e DDA para transformações lineares 2D.",
+        "desc-esperto": "Cliente desktop de IA de alta performance construído com Tauri v2 (Rust), TypeScript e React. Suporta múltiplos provedores (Gemini 3.7, Claude 3.7, GPT-4o e DeepSeek R1) com streaming em tempo real, memória local persistente (Dexie), multimodalidade (imagens, arquivos e Ctrl+V), controle de parâmetros avançados e pipeline de CI/CD multiplataforma automatizado.",
 
         "counter_visits": "VISUALIZAÇÕES",
         "counter_latency": "LATÊNCIA",
@@ -80,6 +81,7 @@ export const translations: Record<string, Record<string, string>> = {
         "desc-block": "Blockchain mining throughput. Optimization of hash processing through hardware parallelism in C++.",
         "desc-lista": "RAG (Retrieval-Augmented Generation) implementation for semantic PDF analysis using OpenAI LLM models.",
         "desc-geo": "Graphical renderer based on analytical geometry. Low-level implementation of Bresenham and DDA algorithms for 2D linear transformations.",
+        "desc-esperto": "High-performance desktop AI assistant engineered with Tauri v2 (Rust), TypeScript, and React. Features multi-provider integration (Gemini 3.7, Claude 3.7, GPT-4o, and DeepSeek R1) with real-time streaming, persistent local memory (Dexie), multimodal analysis (images, files, clipboard paste), advanced inference parameters, and automated cross-platform CI/CD releases.",
 
         "counter_visits": "PAGE VIEWS",
         "counter_latency": "LATENCY",
@@ -88,6 +90,16 @@ export const translations: Record<string, Record<string, string>> = {
 };
 
 export const projectData: Project[] = [
+    {
+        title: "Esperto (AI Desktop Client)",
+        img: "esperto.png",
+        tech: ["Tauri (Rust)", "TypeScript", "React", "Gemini API"],
+        link: "https://github.com/samuelspineli34/Esperto",
+        liveLink: "https://github.com/samuelspineli34/Esperto/releases",
+        featured: true,
+        descKey: "desc-esperto",
+        hasCiCd: true
+    },
     {
         title: "Kaiji (VS Code Extension)",
         img: "kaiji.png",
